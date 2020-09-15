@@ -52,16 +52,16 @@ int main() {
         temp++;
     }
 
-    cout << "Dataset: " << '\n';
-    for (auto i : x)
-        cout << i << " ";
-    cout << '\n';
+    // cout << "Dataset: " << '\n';
+    // for (auto i : x)
+    //    cout << i << " ";
+    // cout << '\n';
     
     double min, max, mean, sdev;
     stats(x, n, mean, sdev, max, min);
-    cout << "min " << min << "\n";
-    cout << "max " << max << "\n";
-    cout << "mean " << mean << "\n";
-    cout << "standard deviation " << sdev << "\n";
+    cout << min << "\n";
+    cout << max << "\n";
+    cout << mean << "\n";
+    cout << sdev << "\n";
     return 0;
 }
