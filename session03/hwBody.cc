@@ -14,13 +14,20 @@ private:
 	string name, orbits;
 	const double mass, diam, peri, aphe, orbper, rotper, axtlt, orbincln;
 	double x, y, z;
-
+	double position;
 public:
 	Body(string& name, string& orbits, double mass, double diam, double peri, double aphe, double orbper, 
 		double rotper, double axtlt, double orbincln, double x, double y, double z): 
 			name(name), orbits(orbits), mass(mass), diam(diam), peri(peri), aphe(aphe), 
-			orbper(orbper), rotper(rotper), axtlt(axtlt), orbincln(orbincln), x(x), y(y), z(z) { }
+			orbper(orbper), rotper(rotper), axtlt(axtlt), orbincln(orbincln), x(x), y(y), z(z) { 
+				position = getPosition();
+				x = position;
+			}
 	
+
+	double getPosition() {
+		return (peri + aphe) / 2;
+	}
 
 	friend ostream& operator <<(ostream& s, Body b) {
 		return s << "Name: " << b.name << "\n\tOrbits: " << b.orbits
