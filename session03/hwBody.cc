@@ -1,5 +1,19 @@
-class Body {
+#include <string>
+#include <iostream>
 
+using namespace std;
+
+class Body {
+private:
+	string name;
+	double mass, x, y, z, radius;
+public:
+	Body(string name, double mass, double x, double y, double z, double radius): 
+		name(name), mass(mass), x(x), y(y), z(z), radius(radius) {}
+	
+	friend ostream& operator <<(ostream& s, Body b) {
+		return s << b.name << ' ' << b.mass << ' ' << b.x << ',' << b.y << ',' << b.z << ',' << b.radius;
+	}
 };
 
 int main() {
