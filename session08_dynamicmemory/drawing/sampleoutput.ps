@@ -1,0 +1,90 @@
+%
+% postscript example
+% coordinates are in points (1/72 of an inch)
+% the default is 8.5 x 11 inch paper (here in the US)
+% which is 6?? x 792
+%
+
+%rectangle
+1 0 0 setrgbcolor
+10 20 moveto 60 20 lineto 60 50 lineto 10 50 lineto closepath stroke
+
+%triangle
+0 1 0 setrgbcolor
+0 100 moveto 100 199 lineto 90 110 lineto closepath fill
+
+%circle
+0 0 1 setrgbcolor
+150 150 50 0 360 arc fill
+
+%line
+0 0 0 setrgbcolor
+200 100 moveto 299 199 lineto stroke
+
+%polygon
+0.5 0 0.5 setrgbcolor
+400 150 moveto
+365.45 197.55 lineto
+309.55 179.39 lineto
+309.55 120.61 lineto
+365.45 102.45 lineto
+closepath
+stroke
+
+%grid
+0.5 0 0.5 setrgbcolor
+400 100 moveto 499 100 lineto
+400 112.5 moveto 499 112.5 lineto
+400 125 moveto 499 125 lineto
+400 100 moveto 400 199 lineto
+412.5 100 moveto 412.5 199 lineto
+stroke
+
+% set the font. You can select other font families and sizes
+% sizes are in points (1/72 inch)
+/Courier findfont 20 scalefont setfont
+500 100 moveto  (testing) show
+
+%ellipse
+gsave
+newpath
+5 setlinewidth
+0 0 1 setrgbcolor
+1.5 1 scale
+250 450 50 0 360 arc stroke
+grestore
+
+
+%quad
+0 0 0 setrgbcolor
+320 220 moveto 320 290 lineto 399 260 lineto 360 230 lineto
+closepath stroke
+
+
+%trapezoid
+gsave
+3.5 setlinewidth
+0 0.5 0 setrgbcolor
+400 200 moveto
+500 200 lineto 475 275 lineto 425 275 lineto
+closepath stroke
+grestore
+
+%rhombus
+0 0 0.5 setrgbcolor
+585 250 moveto 550 300 lineto 515 250 lineto 550 200 lineto
+closepath stroke
+
+% chord
+1 0 0 setrgbcolor
+50 350 50 0 90 arc fill
+
+
+% sector
+0 1 0 setrgbcolor
+150 350 moveto
+150 350 50 80 120 arc
+150 350 lineto
+stroke
+
+% roundrect
