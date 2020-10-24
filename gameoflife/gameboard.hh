@@ -29,7 +29,11 @@ class GameBoard {
         int checkNeighbors(const int x, const int y) const {
             int count = 0;
             for (int i = x-1; i <= x+1; i++) {
+                // std::cout << i << std::endl;
                 for (int j = y-1; j <= y+1; j++) {
+                    // std::cout << j << std::endl;
+                    if (i == x && j == y)
+                        continue;
                     if ((*this)(i, j) == 1)
                         count++;
                 }
@@ -42,15 +46,13 @@ class GameBoard {
             for (int i = 0; i < w; i++) {
                 for (int j = 0; j < h; j++) {
                     int num_neighbors = checkNeighbors(i, j);
-
-                    if (num_neighbors < 2)
-                        next_elem(i, j) = 0;
-                    else if (num_neighbors = 2 || num_neighbors == 3 && (*this) (i, j) == 1)
-                    ;
-                    else if (num_neighbors > 3)
-                        next_elem(i, j) = 0;
-                    else if (num_neighbors == 3 && (*this) (i, j) == 0)
+                    if (num_neighbors == 3) {
                         next_elem(i, j) = 1;
+                    } else if ((*this)(i, j) == 1 && (num_neighbors == 2)) {
+                        next_elem(i, j) = 1;
+                    } else {
+                        next_elem(i, j) = 0;
+                    }
                 }
             }
             std::swap(L, next);
@@ -67,7 +69,6 @@ class GameBoard {
             if (f.is_open()) {
                 while (std::getline(f, line)) {
                     if (first) {
-                        std::cout<< "In first!!!" <<std::endl;
                         ss << line;
                         ss >> w >> h >> ngen >> pgen;
                         bw = w+2; bh = h+2;
@@ -89,18 +90,10 @@ class GameBoard {
                     }
 
                     for (int i = 0; i < line.length(); i++) {
-                        // if (line[i] == '*') 
-                        //     (*this)(i, j) = 1;
                         if (line[i] == '.')
                             (*this)(i, j) = 0;
                         else 
                             (*this)(i, j) = 1;
-                        // else {
-                        //     std::cout << line << std::endl;
-                        //     std::cout << line[i] << std::endl;
-                        //     std::cout << i <<std::endl;
-                        //     throw std::runtime_error("Input row contains characters other than * or . ");
-                        // }
                     }
                     j++;
                     counter++;
@@ -108,18 +101,19 @@ class GameBoard {
                 if (counter < h) {
                     throw std::runtime_error("Too few input rows");
                 }
-
                 f.close();
             }
-            print();
         }
 
         void run() {
+            std::cout << "Generation " << 0 << " " << std::endl;
             print();
-            for (int i = 0; i < ngen; i++) {
-                if ( i % pgen == 0)
-                    print();
+            for (int i = 1; i < ngen; i++) {
                 loop();
+                if ( i % pgen == 0) {
+                    std::cout << "Generation " << i << " " << std::endl; 
+                    print();
+                }
             }
         }
 
@@ -142,8 +136,10 @@ class GameBoard {
                 for (int i = 0; i < w; i++) {
                     if ((*this) (i, j) == 1)
                         std::cout << "* ";
+                        // std::cout << (*this) (i, j) << " ";
                     else
                         std::cout << ". ";
+                        // std::cout << (*this) (i, j) << " ";
                 }
                 std::cout << std::endl;
             }
