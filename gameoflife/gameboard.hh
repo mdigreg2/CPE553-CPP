@@ -105,6 +105,11 @@ class GameBoard {
             }
         }
 
+        ~GameBoard() {
+            delete [] L;
+            delete [] next;
+        }
+        
         void run() {
             std::cout << "Generation " << 0 << " " << std::endl;
             print();
